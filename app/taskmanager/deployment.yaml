@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: taskmanager
+    demo: "true"
+  name: taskmanager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskmanager
+  template:
+    metadata:
+      labels:
+        app: taskmanager
+      # annotations:
+      #   instrumentation.opentelemetry.io/inject-python: "demo"
+    spec:
+      containers:
+      - image: registry.gitlab.com/telecom-argentina/coo/flow/op/taskmanager-flow:opentelemetry-auto_947572262
+        name: taskmanager
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
