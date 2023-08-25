@@ -2,26 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: taskmanager
+    app: upper
     demo: "true"
-  name: taskmanager
+  name: upper
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: taskmanager
+      app: upper
   template:
     metadata:
       labels:
-        app: taskmanager
+        app: upper
       # annotations:
-      #   instrumentation.opentelemetry.io/inject-python: "demo"
+      #   instrumentation.opentelemetry.io/inject-python: "true"
     spec:
       containers:
-      - image: taskmanagerflow:latest
-        name: taskmanager
-        imagePullPolicy: Never
+      - image: jamesgresql/opentelemetry-demo-u_upper:0.2
+        name: upper
         ports:
-        - containerPort: 80
+        - containerPort: 5000
         resources: {}
       restartPolicy: Always
