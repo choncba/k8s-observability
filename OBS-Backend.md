@@ -4,6 +4,13 @@ helm repo add keyval-dev https://keyval-dev.github.io/charts
 
 helm install --repo https://keyval-dev.github.io/charts observability oss-observability --namespace observability --create-namespace
 
+*** Deploy en AWS EKS sin persistence volumes ***
+- fetch del repo original para extraer el chart
+- modificar el values.yaml de prometheus poniendo los PV en false
+- Deployar con 
+helm install observability oss-observability --values ./oss-observability/values.yaml
+
+
 ### Tempo
 Name: tempo (you can choose any name you would like)
 URL: http://observability-tempo.observability
@@ -45,3 +52,4 @@ helm install tempo grafana/tempo-distributed -n observability
 
 ## Loki
 helm install loki grafana/loki -n observability
+

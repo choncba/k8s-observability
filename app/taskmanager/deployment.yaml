@@ -18,9 +18,9 @@ spec:
       #   instrumentation.opentelemetry.io/inject-python: "demo"
     spec:
       containers:
-      - image: taskmanagerflow:latest
+      - image: lrbono/taskmanagerflow:latest
         name: taskmanager
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         resources: {}
