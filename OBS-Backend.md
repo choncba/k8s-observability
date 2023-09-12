@@ -40,7 +40,7 @@ https://dev.to/thenjdevopsguy/implementing-open-source-monitoring-and-observabil
 
 ## Grafana + Prometheus
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm install -n observability kube-prometheus prometheus-community/kube-prometheus-stack --create-namespace
+helm install -n observability grafana-prometheus prometheus-community/kube-prometheus-stack --create-namespace --values kube-prometheus-stack-values.yaml
 
 * Acceso a Grafana
 kubectl port-forward -n observability svc/kube-prometheus-grafana :80
@@ -48,8 +48,8 @@ Username: admin
 Password: prom-operator
 
 ## Tempo
-helm install tempo grafana/tempo-distributed -n observability
+helm install -n observability grafana-tempo grafana/tempo --values tempo-values.yaml
 
 ## Loki
-helm install loki grafana/loki -n observability
+helm install --namespace=observability --values loki-values.yaml loki grafana/loki
 
